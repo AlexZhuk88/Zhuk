@@ -5,10 +5,13 @@ import dao.newsprofile.NewsDaoImpl;
 import dao.userprofile.UserDao;
 import dao.userprofile.UserDaoImpl;
 import model.TheNew;
+import model.Timing;
 import model.User;
 import org.junit.Test;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -38,7 +41,7 @@ public class NewsDaoTest {
 
         NewsDao newsDao = new NewsDaoImpl();
 
-        TheNew newsCorrect = TheNew.builder().newsname("MegTestNews").discription("Test Discription").user(userTest).build();
+        TheNew newsCorrect = TheNew.builder().newsname("MegaTestNews").discription("Test Discription").timing(Timing.of(LocalDate.now(), LocalTime.now())).user(userTest).build();
         Serializable id = newsDao.save(newsCorrect);
         assertNotNull(id);
         newsDao.delete(newsCorrect);
